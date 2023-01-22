@@ -1,0 +1,14 @@
+FROM golang:1.19.4 AS builder
+
+ENV GOOS=linux
+ENV CGO_DISABLED=0
+
+RUN useradd -u 10001 scratchuser
+
+WORKDIR /buildsrc
+
+COPY go.mod go.sum ./
+COPY app app
+COPY db db
+
+RUN go build -o=/go/bin ./app/cmd/...

@@ -1,0 +1,12 @@
+version: "2"
+sql:
+  - schema: "<path to migrations folder>"
+    queries: "<path to queries folder>"
+    engine: "postgresql"
+    gen:
+      go:
+        package: "<package>"
+        out: "app/datastore/<package>"
+        sql_package: "pgx/v5"
+        emit_result_struct_pointers: true
+        emit_params_struct_pointers: true
